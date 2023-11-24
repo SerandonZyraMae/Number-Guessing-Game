@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title> Log In </title>
+
+        <script>
+            function check(form) {
+                if (form.uname.value=="ZYRAMAE" && form.pword.value=="Serandon31"){
+                    window.open('game.html')
+                    window.close('index.html')
+                }
+                else {
+                    alert("Error, Username and Password doesn't match")
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <h2> Log In </h2>
+        <form>
+            <label> Username </label>
+            <input type="text" name="uname" placeholder="Username">
+            <br>
+            <label> Password </label>
+            <input type="password" name="pword" placeholder="Password">
+            <br>
+            <br>
+            <button type="submit" onclick="check(this.form)"> Log In </button> 
+            <a href="signup.html" class="ca"> Create an Account </a>
+        </form>
+    </body>
+</html>

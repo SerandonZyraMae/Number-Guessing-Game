@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Number Guessing Game</title>
+  <script>
+	function logout(){
+		let response = confirm("are you sure you want to log out?");
+		
+		if(response){
+
+
+	    	window.close('game.html');
+		    window.open('index.html');
+		}
+	}
+</script>
+
+</head>
+<body>
+  <h1>Number Guessing Game</h1>
+  <button type="submit" onclick="logout()"> LOGOUT </button>
+
+  <div id="game-container">
+    <p>Guess a number between 1 and 10:</p>
+    <input type="text" id="userGuess" placeholder="Enter your guess">
+    <button onclick="checkGuess()">Submit Guess</button>
+    <p id="result"></p>
+    <p>Chances left: <span id="chances">3</span></p>
+    <button id="retryBtn" onclick="resetGame()" disabled>Retry</button>
+  </div>
+
+  <script>
+    
+    var secretNumber = Math.floor(Math.random() * 10) + 1;
+    var chancesLeft = 3;
+
+    function checkGuess() {
+      
+      var userGuess = document.getElementById("userGuess").value;
+      if (isNaN(userGuess) || userGuess < 1 || userGuess > 10) {
+        alert("Please enter a number between 1 and 10.");
+        return;
+      }
+
+      
+      userGuess = parseInt(userGuess);
+
+      
+      if (userGuess === secretNumber) {
+        document.getElementById("result").innerHTML = "Congratulations! You guessed the correct number.";
+        document.getElementById("retryBtn").disabled = false;
+      } else {
+
+        chancesLeft--;
+        document.getElementById("result").innerHTML = userGuess < secretNumber
+          ? "Incorrect. The correct number is higher."
+          : "Incorrect. The correct number is lower.";
+
+        document.getElementById("chances").innerHTML = chancesLeft;
+
+        
+        if (chancesLeft === 0) {
+          document.getElementById("result").innerHTML = "Sorry, you're out of chances. The correct number was " + secretNumber + ".";
+          document.getElementById("retryBtn").disabled = false;
+        }
+      }
+    }
+
+    function resetGame() {
+      
+      secretNumber = Math.floor(Math.random() * 10) + 1;
+      chancesLeft = 3;
+      document.getElementById("result").innerHTML = "";
+      document.getElementById("chances").innerHTML = chancesLeft;
+      document.getElementById("userGuess").value = "";
+      document.getElementById("retryBtn").disabled = true;
+    }
+  </script>
+</body>
+</html>
